@@ -77,8 +77,19 @@ contract dNFT is Initializable, ERC721Upgradeable, OwnableUpgradeable, UUPSUpgra
     }
 
     function updatePoints(uint256 tokenId, uint256 points) public onlyOwner {
-        _requireOwned(tokenId); 
-        tokensSiteVisits[tokenId] += points;
+            tokensSiteVisits[tokenId] = tokensSiteVisits[tokenId] + points;
+
+            emit PointsUpdated(tokenId, tokensSiteVisits[tokenId]);
+            emit UpdatedMetadata(tokenId);
+    }
+
+    function recordVisit(uint256 tokenId) external onlyOwner {
+        _requireOwned(tokenId);
+        _updatePoints(tokenId);
+    }
+
+    function _updatePoints(uint256 tokenId) internal {
+        tokensSiteVisits[tokenId] += 1;
         emit PointsUpdated(tokenId, tokensSiteVisits[tokenId]);
         emit UpdatedMetadata(tokenId);
     }
