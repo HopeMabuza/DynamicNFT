@@ -7,7 +7,7 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract dNFT is Initializable, ERC721Upgradeable, OwnableUpgradeable, UUPSUpgradeable {
+contract dNFT3 is Initializable, ERC721Upgradeable, OwnableUpgradeable, UUPSUpgradeable {
     using Strings for uint256;
 
     uint256 public nextTokenId;
@@ -83,8 +83,13 @@ contract dNFT is Initializable, ERC721Upgradeable, OwnableUpgradeable, UUPSUpgra
             emit UpdatedMetadata(tokenId);
     }
 
-    function recordVisit(uint256 tokenId) external onlyOwner {
+    function recordVisit(uint256 tokenId) public onlyOwner {
         _requireOwned(tokenId);
+        _updatePoints(tokenId);
+    }
+
+    function exploreGalaxy(uint256 tokenId) external {
+        require(ownerOf(tokenId) == msg.sender, "Not your NFT");
         _updatePoints(tokenId);
     }
 
@@ -92,6 +97,10 @@ contract dNFT is Initializable, ERC721Upgradeable, OwnableUpgradeable, UUPSUpgra
         tokensSiteVisits[tokenId] += 1;
         emit PointsUpdated(tokenId, tokensSiteVisits[tokenId]);
         emit UpdatedMetadata(tokenId);
+    }
+
+    function setSiteVisits(uint256 num) public onlyOwner(){
+        siteVisits = num;
     }
 
     function _authorizeUpgrade(address newImpl) internal override onlyOwner {}
