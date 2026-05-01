@@ -1,0 +1,31 @@
+{
+  "name": "Amethyst Sombrero Galaxy",
+  "description": "You have been assigned the Amethyst Sombrero Galaxy — a regal Sombrero-class spiral draped in rich amethyst and deep violet. Its high central bulge towers above a prominent dark dust lane carved like velvet, while violet internal emissions glow from within, giving this ancient galaxy the authority and splendour of a cosmic crown.",
+  "image": "ipfs://bafybeigv3ndcoltui6aupgamxmj55nm4zf4r4crkzqdpxuoil5y3m45ev4/10.png",
+  "attributes": [
+    {
+      "trait_type": "Status",
+      "value": "Galaxy Member"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "Cosmic"
+    },
+    {
+      "trait_type": "Galaxy Assigned",
+      "value": "Amethyst Sombrero Galaxy"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Spiral Galaxy (Sombrero-class)"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Rich Amethyst & Deep Violet"
+    },
+    {
+      "trait_type": "Key Feature",
+      "value": "Velvet-carved dark dust lane with violet internal emissions"
+    }
+  ]
+}

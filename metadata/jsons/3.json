@@ -1,0 +1,31 @@
+{
+  "name": "Plasma Phoenix",
+  "description": "You have been assigned the Plasma Phoenix — a narrow-line radio galaxy reborn in blazing orange and electric blue. Relativistic jets thunder outward from a supermassive black hole at its core, sculpting vast plasma lobes into dynamic wings that stretch across the cosmos like a phoenix rising from the void.",
+  "image": "ipfs://bafybeigv3ndcoltui6aupgamxmj55nm4zf4r4crkzqdpxuoil5y3m45ev4/2.png",
+  "attributes": [
+    {
+      "trait_type": "Status",
+      "value": "Galaxy Member"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "Cosmic"
+    },
+    {
+      "trait_type": "Galaxy Assigned",
+      "value": "Plasma Phoenix"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Narrow-Line Radio Galaxy"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Blazing Orange & Electric Blue"
+    },
+    {
+      "trait_type": "Key Feature",
+      "value": "Relativistic jets forming expansive plasma lobes like wings"
+    }
+  ]
+}

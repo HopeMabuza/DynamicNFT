@@ -1,0 +1,31 @@
+{
+  "name": "Deep Sea Ring Galaxy",
+  "description": "You have been assigned the Deep Sea Ring Galaxy — a peculiar ring galaxy that mirrors the mysteries of the deep ocean. Its brilliant golden nucleus is completely encircled by a distinct ring of deep-sea blue star formations, glowing in ethereal turquoise and sapphire like bioluminescent life drifting through the cosmic deep.",
+  "image": "ipfs://bafybeigv3ndcoltui6aupgamxmj55nm4zf4r4crkzqdpxuoil5y3m45ev4/9.png",
+  "attributes": [
+    {
+      "trait_type": "Status",
+      "value": "Galaxy Member"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "Cosmic"
+    },
+    {
+      "trait_type": "Galaxy Assigned",
+      "value": "Deep Sea Ring Galaxy"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Ring Galaxy (Peculiar)"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Ethereal Turquoise & Sapphire"
+    },
+    {
+      "trait_type": "Key Feature",
+      "value": "Golden nucleus surrounded by a ring of deep-sea blue star formations"
+    }
+  ]
+}

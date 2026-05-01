@@ -1,0 +1,31 @@
+{
+  "name": "Cosmic Dance",
+  "description": "You have been assigned the Cosmic Dance — two massive spiral galaxies locked in an eternal gravitational embrace. Blazing red and vibrant blue, their tidal tails intertwine across the void to trace a heart-like silhouette, a love story written in stars that will one day merge into a single, magnificent galaxy.",
+  "image": "ipfs://bafybeigv3ndcoltui6aupgamxmj55nm4zf4r4crkzqdpxuoil5y3m45ev4/7.png",
+  "attributes": [
+    {
+      "trait_type": "Status",
+      "value": "Galaxy Member"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "Cosmic"
+    },
+    {
+      "trait_type": "Galaxy Assigned",
+      "value": "Cosmic Dance"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Interacting Spiral Galaxies (Collision pair)"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Fiery Red & Vibrant Blue"
+    },
+    {
+      "trait_type": "Key Feature",
+      "value": "Tidal tails intertwining into a heart-like structure"
+    }
+  ]
+}

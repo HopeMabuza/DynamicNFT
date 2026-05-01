@@ -1,0 +1,31 @@
+{
+  "name": "Supernova Symphony",
+  "description": "You have been assigned the Supernova Symphony — a starburst spiral galaxy erupting in explosive cyan and magenta. Driven by a recent cosmic interaction, its intense central starburst radiates a symmetrical burst pattern that echoes the notation of a galactic orchestra performing its most dramatic movement.",
+  "image": "ipfs://bafybeigv3ndcoltui6aupgamxmj55nm4zf4r4crkzqdpxuoil5y3m45ev4/1.png",
+  "attributes": [
+    {
+      "trait_type": "Status",
+      "value": "Galaxy Member"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "Cosmic"
+    },
+    {
+      "trait_type": "Galaxy Assigned",
+      "value": "Supernova Symphony"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Starburst Spiral Galaxy"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Explosive Cyan & Magenta"
+    },
+    {
+      "trait_type": "Key Feature",
+      "value": "Symmetrical burst pattern resembling musical notation"
+    }
+  ]
+}

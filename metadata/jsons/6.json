@@ -1,0 +1,31 @@
+{
+  "name": "Abalone Edge-on Galaxy",
+  "description": "You have been assigned the Abalone Edge-on Galaxy — a majestic Sombrero-class spiral seen edge-on, its iridescent blues and greens shimmering like mother-of-pearl. A massive bronze dust lane bisects the central bulge, revealing complex, lustrous structures within the core disk that rival the beauty of the finest abalone shell.",
+  "image": "ipfs://bafybeigv3ndcoltui6aupgamxmj55nm4zf4r4crkzqdpxuoil5y3m45ev4/5.png",
+  "attributes": [
+    {
+      "trait_type": "Status",
+      "value": "Galaxy Member"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "Cosmic"
+    },
+    {
+      "trait_type": "Galaxy Assigned",
+      "value": "Abalone Edge-on Galaxy"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Edge-on Spiral (Sombrero-class)"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Iridescent Blues & Greens"
+    },
+    {
+      "trait_type": "Key Feature",
+      "value": "Bronze dust lane revealing mother-of-pearl core structures"
+    }
+  ]
+}

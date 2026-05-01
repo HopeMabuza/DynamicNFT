@@ -1,0 +1,31 @@
+{
+  "name": "Cosmic Compass",
+  "description": "You have been assigned the Cosmic Compass — one of the rarest structures in the known universe. A polar ring galaxy where a brilliant golden ring of newly born stars and swirling gas rotates perpendicularly over the poles of an ancient bronze lenticular core, charting directions no map has ever drawn.",
+  "image": "ipfs://bafybeigv3ndcoltui6aupgamxmj55nm4zf4r4crkzqdpxuoil5y3m45ev4/3.png",
+  "attributes": [
+    {
+      "trait_type": "Status",
+      "value": "Galaxy Member"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "Cosmic"
+    },
+    {
+      "trait_type": "Galaxy Assigned",
+      "value": "Cosmic Compass"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Polar Ring Galaxy"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Golden (Ring) & Bronze (Core)"
+    },
+    {
+      "trait_type": "Key Feature",
+      "value": "Orthogonal ring of stars rotating over the poles of an S0 core"
+    }
+  ]
+}

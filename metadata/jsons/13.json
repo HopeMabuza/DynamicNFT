@@ -1,0 +1,31 @@
+{
+  "name": "Neon Barred Spiral Galaxy",
+  "description": "You have been assigned the Neon Barred Spiral Galaxy — a grand design barred spiral crackling with electric neon blues, purples, and magentas. Its sharp, symmetrical bar structure is defined by intensely radiating electric gas and vibrant dust lanes that pulse with raw, neon energy, making it one of the most visually striking galaxies in the cosmos.",
+  "image": "ipfs://bafybeigv3ndcoltui6aupgamxmj55nm4zf4r4crkzqdpxuoil5y3m45ev4/12.png",
+  "attributes": [
+    {
+      "trait_type": "Status",
+      "value": "Galaxy Member"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "Cosmic"
+    },
+    {
+      "trait_type": "Galaxy Assigned",
+      "value": "Neon Barred Spiral Galaxy"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Barred Spiral (Grand Design)"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Electric Neon Blues, Purples & Magentas"
+    },
+    {
+      "trait_type": "Key Feature",
+      "value": "Sharp symmetrical bar of intensely radiating electric gas"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Star Shower Dwarf Galaxy",
+  "description": "You have been assigned the Star Shower Dwarf Galaxy — a faint and diffuse dwarf spheroidal galaxy glowing in soft gold and lavender. Billions of tiny stars fill this sparkling cosmic cloud like a perpetual shower of falling light, small in size but infinite in wonder.",
+  "image": "ipfs://bafybeigv3ndcoltui6aupgamxmj55nm4zf4r4crkzqdpxuoil5y3m45ev4/4.png",
+  "attributes": [
+    {
+      "trait_type": "Status",
+      "value": "Galaxy Member"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "Cosmic"
+    },
+    {
+      "trait_type": "Galaxy Assigned",
+      "value": "Star Shower Dwarf Galaxy"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Dwarf Spheroidal Galaxy (dSph)"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Soft Gold & Lavender"
+    },
+    {
+      "trait_type": "Key Feature",
+      "value": "Billions of micro-stars forming a sparkling falling-star cloud"
+    }
+  ]
+}

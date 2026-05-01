@@ -1,0 +1,31 @@
+{
+  "name": "Crystalline Pinwheel Galaxy",
+  "description": "You have been assigned the Crystalline Pinwheel Galaxy — an M101-class spiral unlike any other. At its heart, where a nucleus should blaze, sits a multi-faceted, iridescent prismatic crystal that refracts starlight into a prismatic rainbow, painting each spiral arm with every colour the cosmos can conceive.",
+  "image": "ipfs://bafybeigv3ndcoltui6aupgamxmj55nm4zf4r4crkzqdpxuoil5y3m45ev4/8.png",
+  "attributes": [
+    {
+      "trait_type": "Status",
+      "value": "Galaxy Member"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "Cosmic"
+    },
+    {
+      "trait_type": "Galaxy Assigned",
+      "value": "Crystalline Pinwheel Galaxy"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Spiral Galaxy (M101-class)"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Prismatic Rainbow (Multichromatic)"
+    },
+    {
+      "trait_type": "Key Feature",
+      "value": "Iridescent prismatic crystal nucleus refracting light into the arms"
+    }
+  ]
+}

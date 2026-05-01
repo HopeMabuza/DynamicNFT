@@ -1,0 +1,31 @@
+{
+  "name": "Molten Elliptical Galaxy",
+  "description": "You have been assigned the Molten Elliptical Galaxy — one of the oldest and most monumental galaxies in existence. A vast, smooth sphere of concentrated molten plasma radiating in fiery orange and bronze, this ancient E0-class elliptical is a relic of the early universe, its thermal energy still blazing billions of years after its stars first ignited.",
+  "image": "ipfs://bafybeigv3ndcoltui6aupgamxmj55nm4zf4r4crkzqdpxuoil5y3m45ev4/13.png",
+  "attributes": [
+    {
+      "trait_type": "Status",
+      "value": "Galaxy Member"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "Cosmic"
+    },
+    {
+      "trait_type": "Galaxy Assigned",
+      "value": "Molten Elliptical Galaxy"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Elliptical Galaxy (E0-class)"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Fiery Molten Orange & Bronze"
+    },
+    {
+      "trait_type": "Key Feature",
+      "value": "Massive smooth sphere of concentrated molten plasma"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Galactic Reef",
+  "description": "You have been assigned the Galactic Reef — a chaotic, high-density cluster of irregular galaxies radiating in emerald, coral pink, and turquoise. Like a bioluminescent coral reef teeming with alien life, this cosmic formation sprawls across space in a dazzling, living tapestry of colour and unordered beauty.",
+  "image": "ipfs://bafybeigv3ndcoltui6aupgamxmj55nm4zf4r4crkzqdpxuoil5y3m45ev4/11.png",
+  "attributes": [
+    {
+      "trait_type": "Status",
+      "value": "Galaxy Member"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "Cosmic"
+    },
+    {
+      "trait_type": "Galaxy Assigned",
+      "value": "Galactic Reef"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Irregular Galaxy Cluster"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Emerald, Coral Pink & Turquoise"
+    },
+    {
+      "trait_type": "Key Feature",
+      "value": "High-density irregular cluster resembling a bioluminescent coral reef"
+    }
+  ]
+}

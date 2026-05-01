@@ -1,0 +1,31 @@
+{
+  "name": "Vortex Spiral Galaxy",
+  "description": "You have been assigned the Vortex Spiral Galaxy — a grand design spiral of deep indigo, teal, and charcoal. Its defined, sweeping arms are vast rivers of cold cosmic gas and luminous star-forming nebulae, twisting outward in a hypnotic vortex that pulls all light toward its ancient core.",
+  "image": "ipfs://bafybeigv3ndcoltui6aupgamxmj55nm4zf4r4crkzqdpxuoil5y3m45ev4/6.png",
+  "attributes": [
+    {
+      "trait_type": "Status",
+      "value": "Galaxy Member"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "Cosmic"
+    },
+    {
+      "trait_type": "Galaxy Assigned",
+      "value": "Vortex Spiral Galaxy"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Spiral Galaxy (Grand Design, M51-class)"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Deep Indigo, Teal & Charcoal"
+    },
+    {
+      "trait_type": "Key Feature",
+      "value": "Twisting arms of cold gas and bright star-forming nebulae"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Galaxy Club Member",
+  "description": "Welcome to the Galaxy Club! You have just joined an exclusive community of cosmic explorers. Complete 10 site visits to be assigned your very own galaxy and unlock your true cosmic identity.",
+  "attributes": [
+    {
+      "trait_type": "Status",
+      "value": "New Member"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "Explorer"
+    },
+    {
+      "trait_type": "Galaxy Assigned",
+      "value": "None"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Uncharted"
+    }
+  ]
+}

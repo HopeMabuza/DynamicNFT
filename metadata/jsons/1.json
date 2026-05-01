@@ -1,0 +1,31 @@
+{
+  "name": "Cluster of Jewels",
+  "description": "You have been assigned the Cluster of Jewels — a breathtaking Abell Class galaxy cluster where hundreds of diverse galaxies appear as multifaceted jewels against the cosmos. Ruby spirals and sapphire ellipticals fill this dense, dazzling field in a symphony of warm gold and multichromatic brilliance.",
+  "image": "ipfs://bafybeigv3ndcoltui6aupgamxmj55nm4zf4r4crkzqdpxuoil5y3m45ev4/0.png",
+  "attributes": [
+    {
+      "trait_type": "Status",
+      "value": "Galaxy Member"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "Cosmic"
+    },
+    {
+      "trait_type": "Galaxy Assigned",
+      "value": "Cluster of Jewels"
+    },
+    {
+      "trait_type": "Object Type",
+      "value": "Abell Class Cluster (Galaxy Cluster)"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Warm Gold & Multichromatic"
+    },
+    {
+      "trait_type": "Key Feature",
+      "value": "Ruby spirals and sapphire ellipticals in a dense jewelled field"
+    }
+  ]
+}
