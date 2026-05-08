@@ -3,6 +3,7 @@ import { ethers } from "ethers";
 import MyContractABI from "../abi/myContract.json";
 
 const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS;
+const EXPLORE_THRESHOLD = 5;
 
 export function useContract() {
   const [contract, setContract] = useState(null);
@@ -16,9 +17,15 @@ export function useContract() {
   const [visitCount, setVisitCount] = useState(0);
   const [galaxyName, setGalaxyName] = useState(null);
   const [isExploring, setIsExploring] = useState(false);
-  const [threshold, setThreshold] = useState(10); // mirrors siteVisits on the contract
+  const [isUpgrading, setIsUpgrading] = useState(false);
+  const SIG_KEY = "galaxy_sig";
+  const [signature, setSignature] = useState(
+    () => sessionStorage.getItem(SIG_KEY) ?? null
+  );
 
-  // Tracks the manual connect flow so the modal knows what step to show
+  const SIGN_MESSAGE = "Welcome to Galaxy Club! Sign to verify you own the wallet.";
+  const SERVER_URL = "http://localhost:3000";
+
   // 'idle' | 'connecting' | 'checking' | 'no-nft' | 'done'
   const [walletStep, setWalletStep] = useState("idle");
 
@@ -38,7 +45,6 @@ export function useContract() {
     return null;
   }
 
-  // Parses the galaxy name from a tokenURI (data URI or HTTP/IPFS URL)
   async function fetchGalaxyName(uri) {
     try {
       let metadata = null;
@@ -59,22 +65,7 @@ export function useContract() {
     }
   }
 
-  async function refreshVisitCount(contractInst, tid, currentThreshold) {
-    const visits = await contractInst.tokensSiteVisits(tid);
-    const count = Number(visits);
-    setVisitCount(count);
-
-    if (count >= currentThreshold) {
-      try {
-        const uri = await contractInst.tokenURI(tid);
-        setGalaxyName((await fetchGalaxyName(uri)) ?? "Unknown Galaxy");
-      } catch {
-        setGalaxyName("Unknown Galaxy");
-      }
-    }
-  }
-
-  // Returns 'has-nft' or 'no-nft' so callers can update walletStep
+  // Returns 'has-nft' or 'no-nft'
   async function loadNFTData(contractInst, userAddress) {
     setNftStatus("loading");
     setError(null);
@@ -88,10 +79,15 @@ export function useContract() {
       }
 
       setTokenId(found);
-      const contractThreshold = await contractInst.siteVisits();
-      const thresh = Number(contractThreshold);
-      setThreshold(thresh);
-      await refreshVisitCount(contractInst, found, thresh);
+
+      // Check if this token has already been upgraded on-chain
+      const alreadyUpgraded = await contractInst.hasNewMetadata(found);
+      if (alreadyUpgraded) {
+        const uri = await contractInst.tokenURI(found);
+        setGalaxyName((await fetchGalaxyName(uri)) ?? "Unknown Galaxy");
+        setVisitCount(EXPLORE_THRESHOLD);
+      }
+
       setNftStatus("has-nft");
       return "has-nft";
     } catch (err) {
@@ -135,6 +131,7 @@ export function useContract() {
     if (!window.ethereum) return;
     const handler = async (accounts) => {
       if (accounts.length === 0) {
+        sessionStorage.removeItem(SIG_KEY);
         setIsConnected(false);
         setAccount(null);
         setSigner(null);
@@ -143,6 +140,7 @@ export function useContract() {
         setTokenId(null);
         setVisitCount(0);
         setGalaxyName(null);
+        setSignature(null);
         setWalletStep("idle");
       } else {
         const web3Provider = new ethers.BrowserProvider(window.ethereum);
@@ -163,9 +161,15 @@ export function useContract() {
 
       const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
 
-      setWalletStep("checking");
+      setWalletStep("signing");
       const web3Provider = new ethers.BrowserProvider(window.ethereum);
       const web3Signer = await web3Provider.getSigner();
+
+      const sig = await web3Signer.signMessage(SIGN_MESSAGE);
+      sessionStorage.setItem(SIG_KEY, sig);
+      setSignature(sig);
+
+      setWalletStep("checking");
       const result = await setupWallet(accounts[0], web3Provider, web3Signer);
 
       setWalletStep(result === "no-nft" ? "no-nft" : "done");
@@ -182,9 +186,37 @@ export function useContract() {
     setError(null);
 
     try {
-      const tx = await contract.connect(signer).exploreGalaxy(tokenId);
-      await tx.wait();
-      await refreshVisitCount(contract, tokenId, threshold);
+      let sig = signature;
+      if (!sig) {
+        sig = await signer.signMessage(SIGN_MESSAGE);
+        sessionStorage.setItem(SIG_KEY, sig);
+        setSignature(sig);
+      }
+
+      const res = await fetch(`${SERVER_URL}/explore-click`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          walletAddress: account,
+          tokenId: tokenId.toString(),
+          signature: sig,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Server error");
+
+      setVisitCount(data.clickCount);
+
+      if (data.upgradeNow) {
+        setIsUpgrading(true);
+        const contractWithSigner = contract.connect(signer);
+        const tx = await contractWithSigner.userSetNewURI(tokenId);
+        await tx.wait();
+        setIsUpgrading(false);
+        const uri = await contract.tokenURI(tokenId);
+        setGalaxyName((await fetchGalaxyName(uri)) ?? "Unknown Galaxy");
+      }
     } catch (err) {
       if (err.code === "ACTION_REJECTED") {
         setError("Transaction cancelled.");
@@ -193,6 +225,7 @@ export function useContract() {
       }
     } finally {
       setIsExploring(false);
+      setIsUpgrading(false);
     }
   }
 
@@ -206,9 +239,11 @@ export function useContract() {
     visitCount,
     galaxyName,
     isExploring,
+    isUpgrading,
     exploreGalaxy,
     walletStep,
     setWalletStep,
-    threshold,
+    threshold: EXPLORE_THRESHOLD,
+    signature,
   };
 }

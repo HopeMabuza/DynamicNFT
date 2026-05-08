@@ -68,6 +68,7 @@ function App() {
     visitCount,
     galaxyName,
     isExploring,
+    isUpgrading,
     exploreGalaxy,
     walletStep,
     setWalletStep,
@@ -95,9 +96,10 @@ function App() {
 
   const showModal =
     walletStep === "connecting" ||
+    walletStep === "signing" ||
     walletStep === "checking" ||
     walletStep === "no-nft" ||
-    isExploring;
+    isUpgrading;
 
   return (
     <div className="app">
@@ -137,7 +139,7 @@ function App() {
       {showModal && (
         <OnboardingModal
           walletStep={walletStep}
-          isExploring={isExploring}
+          isUpgrading={isUpgrading}
           onConnect={handleConnect}
           onClose={handleCloseModal}
           error={error}

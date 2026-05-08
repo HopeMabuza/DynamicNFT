@@ -9,23 +9,21 @@ app.use(cors({ origin: 'http://localhost:5173' }));
 
 const provider = new ethers.JsonRpcProvider(process.env.SEPOLIA_RPC_URL);
 
-// Owner wallet — used to call updatePoints (onlyOwner function)
-const ownerWallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
-
 const contractAddress = process.env.PROXY_ADDRESS;
 const abi = [
     "function balanceOf(address owner) view returns (uint256)",
-    "function ownerOf(uint256 tokenId) view returns (address)",
-    "function tokensSiteVisits(uint256 tokenId) view returns (uint256)",
-    "function recordVisit(uint256 tokenId) external"
+    "function ownerOf(uint256 tokenId) view returns (address)"
 ];
 
-const nftContractRead  = new ethers.Contract(contractAddress, abi, provider);      // for reading
-const nftContractWrite = new ethers.Contract(contractAddress, abi, ownerWallet);   // for writing
+const nftContractRead = new ethers.Contract(contractAddress, abi, provider);
 
 const SIGN_MESSAGE = "Welcome to Galaxy Club! Sign to verify you own the wallet.";
+const EXPLORE_THRESHOLD = 5;
 
-// Helper: verify the wallet signature
+// In-memory click tracker: { walletAddress: { tokenId: count } }
+// Resets when server restarts — fine for testing
+const clickTracker = {};
+
 function verifySignature(walletAddress, signature) {
     const recovered = ethers.verifyMessage(SIGN_MESSAGE, signature);
     return recovered.toLowerCase() === walletAddress.toLowerCase();
@@ -56,8 +54,9 @@ app.post('/verify-nft', async (req, res) => {
     }
 });
 
-// Called every time the user visits the site
-app.post('/track-visit', async (req, res) => {
+// Tracks explore button clicks server-side.
+// On click 3 the server tells the frontend to call userSetNewURI and resets the counter.
+app.post('/explore-click', async (req, res) => {
     const { walletAddress, tokenId, signature } = req.body;
 
     if (!walletAddress || tokenId === undefined || !signature) {
@@ -65,28 +64,31 @@ app.post('/track-visit', async (req, res) => {
     }
 
     try {
-        // 1. Verify the user controls the wallet
         if (!verifySignature(walletAddress, signature)) {
             return res.status(401).json({ error: "Signature does not match wallet" });
         }
 
-        // 2. Confirm this wallet actually owns that tokenId
         const actualOwner = await nftContractRead.ownerOf(tokenId);
         if (actualOwner.toLowerCase() !== walletAddress.toLowerCase()) {
             return res.status(403).json({ error: "You do not own this token" });
         }
 
-        // 3. Record +1 visit on-chain using the owner's wallet
-        const tx = await nftContractWrite.recordVisit(tokenId);
-        await tx.wait();
+        const key = walletAddress.toLowerCase();
+        if (!clickTracker[key]) clickTracker[key] = {};
+        if (clickTracker[key][tokenId] === undefined) clickTracker[key][tokenId] = 0;
 
-        // 4. Return the updated visit count
-        const visits = await nftContractRead.tokensSiteVisits(tokenId);
-        res.json({ success: true, visits: visits.toString() });
+        clickTracker[key][tokenId] += 1;
+        const count = clickTracker[key][tokenId];
 
+        if (count >= EXPLORE_THRESHOLD) {
+            clickTracker[key][tokenId] = 0;
+            return res.json({ upgradeNow: true, clickCount: count });
+        }
+
+        res.json({ upgradeNow: false, clickCount: count });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Error recording visit" });
+        res.status(500).json({ error: "Error tracking click" });
     }
 });
 

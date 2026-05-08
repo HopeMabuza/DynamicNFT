@@ -1,5 +1,4 @@
-// Step labels shown at the top of the modal
-const STEPS = ["Connect Wallet", "Check NFT", "Enter Galaxy"];
+const STEPS = ["Connect Wallet", "Sign to Verify", "Check NFT", "Enter Galaxy"];
 
 function StepBar({ currentStep }) {
   // currentStep: 0 = connecting, 1 = checking, 2 = done
@@ -22,24 +21,24 @@ function StepBar({ currentStep }) {
   );
 }
 
-export default function OnboardingModal({ walletStep, isExploring, onConnect, onClose, error }) {
-  // Don't render if nothing needs showing
+export default function OnboardingModal({ walletStep, isUpgrading, onConnect, onClose, error }) {
   if (walletStep === "idle" || walletStep === "done") {
-    if (!isExploring) return null;
+    if (!isUpgrading) return null;
   }
 
   // Which progress step index are we on?
   const stepIndex =
     walletStep === "connecting" ? 0 :
-    walletStep === "checking"   ? 1 :
-    isExploring                 ? 2 : 2;
+    walletStep === "signing"    ? 1 :
+    walletStep === "checking"   ? 2 :
+    isUpgrading                 ? 3 : 3;
 
   return (
     <div className="modal-overlay">
       <div className="modal-card">
 
         {/* ── Wallet connection steps ── */}
-        {(walletStep === "connecting" || walletStep === "checking" || walletStep === "no-nft") && (
+        {(walletStep === "connecting" || walletStep === "signing" || walletStep === "checking" || walletStep === "no-nft") && (
           <>
             <StepBar currentStep={stepIndex} />
 
@@ -55,6 +54,20 @@ export default function OnboardingModal({ walletStep, isExploring, onConnect, on
                   Connect MetaMask
                 </button>
                 {error && <p className="error-msg" style={{ marginTop: "1rem" }}>{error}</p>}
+              </div>
+            )}
+
+            {walletStep === "signing" && (
+              <div className="modal-body">
+                <div className="modal-icon">✍️</div>
+                <h2 className="modal-title">Sign to Verify Ownership</h2>
+                <p className="modal-text">
+                  MetaMask will ask you to sign a message to prove you own this wallet.
+                  This is <strong>not a transaction</strong> — it's free and doesn't cost any gas.
+                </p>
+                <p className="modal-hint">
+                  👆 Check the MetaMask popup — it may be behind this window.
+                </p>
               </div>
             )}
 
@@ -84,8 +97,8 @@ export default function OnboardingModal({ walletStep, isExploring, onConnect, on
           </>
         )}
 
-        {/* ── Explore Galaxy signing step ── */}
-        {isExploring && (
+        {/* ── On-chain upgrade step (5th explore only) ── */}
+        {isUpgrading && (
           <div className="modal-body">
             <div className="spinner modal-spinner" />
             <h2 className="modal-title">Confirm in MetaMask</h2>

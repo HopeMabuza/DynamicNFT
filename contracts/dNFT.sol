@@ -7,15 +7,14 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract dNFT3 is Initializable, ERC721Upgradeable, OwnableUpgradeable, UUPSUpgradeable {
+contract dNFT is Initializable, ERC721Upgradeable, OwnableUpgradeable, UUPSUpgradeable {
     using Strings for uint256;
 
     uint256 public nextTokenId;
     string public baseURI;
     uint256 public totalSupply;
-    uint256 public siteVisits;
 
-    mapping(uint256 => uint256) public tokensSiteVisits;
+    mapping(uint256 => bool) public hasNewMetadata;
 
     uint256[50] private __gap;
 
@@ -32,7 +31,6 @@ contract dNFT3 is Initializable, ERC721Upgradeable, OwnableUpgradeable, UUPSUpgr
         baseURI = baseURI_;
         __ERC721_init("Galaxy NFT", "GNFT");
         __Ownable_init(msg.sender);
-        siteVisits = 10;
         totalSupply = 14;
     }
 
@@ -42,7 +40,7 @@ contract dNFT3 is Initializable, ERC721Upgradeable, OwnableUpgradeable, UUPSUpgr
         require(msg.value == 0.0001 ether, "Requires exactly 0.0001 ether");
         uint256 tokenId = nextTokenId;
         _safeMint(msg.sender, tokenId);
-        tokensSiteVisits[tokenId] = 0;
+        hasNewMetadata[tokenId] = false;
         nextTokenId++;
         emit MintedNFT(tokenId, msg.sender);
     }
@@ -55,7 +53,7 @@ contract dNFT3 is Initializable, ERC721Upgradeable, OwnableUpgradeable, UUPSUpgr
 
     function tokenURI(uint256 tokenId) public view override returns (string memory) {
         _requireOwned(tokenId);
-        if (tokensSiteVisits[tokenId] < siteVisits) {
+        if (hasNewMetadata[tokenId] == false) {
             return string(abi.encodePacked(baseURI, "0.json"));
         } else {
             return string(abi.encodePacked(baseURI, (tokenId + 1).toString(), ".json"));
@@ -76,31 +74,13 @@ contract dNFT3 is Initializable, ERC721Upgradeable, OwnableUpgradeable, UUPSUpgr
         baseURI = baseURI_;
     }
 
-    function updatePoints(uint256 tokenId, uint256 points) public onlyOwner {
-            tokensSiteVisits[tokenId] = tokensSiteVisits[tokenId] + points;
-
-            emit PointsUpdated(tokenId, tokensSiteVisits[tokenId]);
-            emit UpdatedMetadata(tokenId);
+    function ownerSetNewURI(uint256 tokenId) public onlyOwner {
+        hasNewMetadata[tokenId] = true;
     }
 
-    function recordVisit(uint256 tokenId) public onlyOwner {
-        _requireOwned(tokenId);
-        _updatePoints(tokenId);
-    }
-
-    function exploreGalaxy(uint256 tokenId) external {
+    function userSetNewURI(uint256 tokenId) external {
         require(ownerOf(tokenId) == msg.sender, "Not your NFT");
-        _updatePoints(tokenId);
-    }
-
-    function _updatePoints(uint256 tokenId) internal {
-        tokensSiteVisits[tokenId] += 1;
-        emit PointsUpdated(tokenId, tokensSiteVisits[tokenId]);
-        emit UpdatedMetadata(tokenId);
-    }
-
-    function setSiteVisits(uint256 num) public onlyOwner(){
-        siteVisits = num;
+        hasNewMetadata[tokenId] = true;
     }
 
     function _authorizeUpgrade(address newImpl) internal override onlyOwner {}
